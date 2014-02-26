@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Profile xmlns="http://www.example.org/Profile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/Profil Profil.xsd">
+	<Name>Oliver Staudt</Name>
+	<Contact>
+		<EMail>oliver.r.staudt@gmail.com</EMail>
+		
+	</Contact>
+	<Experiences>
+		<Experience Name="Testdesigner" start="2013-09-01">
+			<Employee Name="DB Systel GmbH">
+				<Description>
+							Die DB Systel GmbH mit Sitz in Frankfurt am Main ist mit rund 3.100 Mitarbeitern einer der führenden Anbieter von ICT-Lösungen in Deutschland.
+							Als Tochterunternehmen der Deutschen Bahn decken wir dabei den gesamten Lebenszyklus von IT- und TK-Lösungen ab, angefangen von der fachlichen Analyse über die strategische Planung und Entwicklung bis hin zu Betrieb und Optimierung. Der Gesamtumsatz des Unternehmens betrug im Jahr 2012 rund 765 Millionen Euro.
+				</Description>
+				
+			</Employee>
+			<Project Name="IRIS - Interne Reiseinformationssysteme" start="2013-09-01">
+				<Role Name="Testdesinger">
+					<UsedSkill Name="HP Quality Center 10" />
+					<UsedSkill Name="XML" />
+					<UsedSkill Name="Kommunikation im Projekt" Skilltype="Softskill"/>
+				</Role>
+				<Role Name="Testausführung">
+					<UsedSkill Name="Offshore-Koordination" Skilltype="Softskill"/>
+				</Role>
+			</Project>
+			<Project Name="RIS Resdesign" start="2013-12-01">
+			</Project>
+			<Poject Name="Automatisierung RIS Kern Ein/Ausgang">
+				<Role Name="Testautomatisierer">
+					<UsedSkill Name="XML"/>
+					<UsedSkill Name="XProc" />
+				</Role>
+				<Role Name="Testautomatisierungsberater">
+				</Role>
+			</Poject>
+		</Experience>
+		<Experience Name="Software Development Engineer in Test"
+			start="2008-04-21" end="2013-08-31">
+			<Employee Name="Applied Security GmbH">
+				<Description><![CDATA[<div class="entry">
+<div id="idTextPanel">
+<h2>IT-Sicherheit ist der Schlüssel<br>zu einem erfolgreichen Unternehmen.</h2>
+<h3><strong>Mit Sicherheit erfolgreich: Unsere Geschichte</strong></h3>
+<p>Seit 1998 steht der Name apsec für hochklassige IT-Sicherheit.<br> Wir entwickeln Sicherheitslösungen in enger Abstimmung mit unseren Kunden.</p>
+<p>Insbesondere in Banken- und Behördenkreisen sowie im Gesundheits- wesen sind wir für unsere kompetente Beratung und die maßgeschneiderte Softwareentwicklung bekannt.</p>
+<p>Auch die Lösungen unserer fide<em>AS</em><sup>®</sup>-Produktfamilie erfüllen höchste Ansprüche auf den Gebieten Verschlüsselung, digitale Signatur und sichere Authentisierung.</p>
+<p>Unsere Entwickler arbeiten mit dem Grundsatz, zuverlässige IT-Sicherheit so einfach wie möglich zu erreichen.</p>
+<p>apsec ist Träger des Qualitätssiegels “IT-Security made in Germany” (<a title="IT-Sicherheit made in Germany - das Qualitätssiegel des TeleTrusT" href="http://www.teletrust.de/itsmig" target="_blank">ITSMIG</a>) des Bundesverbandes TeleTrusT der IT-Sicherheitswirtschaft. Dieses Siegel sagt unter anderem aus, das wir unsere Software in Deutschland produzieren und das die Software frei von Hintertüren und versteckten Zugängen für Dritte ist.</p>
+<p><a href="http://www.apsec.de/videos/apsec_Interview_S.Scherz.wmv">Video</a></p>
+</div>
+</div>]]></Description>
+
+			</Employee>
+			<Project Name="GKV-Kommunikationsserver" start="2009-12-01"
+				end="2012-08-01">
+				<Role Name="Softwaretester">
+					<UsedSkill Name="Microsoft Test Professional 2010"
+						Skilltype="Hardskill" />
+					<UsedSkill Name="Rollenverständnis ITIL" Skilltype="Softskill">
+						<Description>Kommunikation zwischen den einzelnen ITIL Rollen</Description>
+					</UsedSkill>
+					<UsedSkill Name="Testautomatisierung" Level="Experienced"
+						Skilltype="Hardskill" />
+					<UsedSkill Name="Testberatung" Level="Experienced"
+						Skilltype="Hardskill" />
+					<UsedSkill Name="Testmanagement" Level="Beginner"
+						Skilltype="Hardskill" />
+					<UsedSkill Name="Testdesign" Level="Experienced"
+						Skilltype="Hardskill" />
+					<UsedSkill Name="Kryptographie" Level="Expert"/>
+					<UsedSkill Name="Asymmetrische Verschlüsselung" Level="Expert"/>
+					<UsedSkill Name="Digitale Signaturen" Level="Expert"/>
+					<UsedSkill Name="PKI" Level="Expert"/>
+					<UsedSkill Name="Microsoft SQL-Server" />
+				</Role>
+				<Role Name="Software Development Engineer">
+					<UsedSkill Name="C# .net 4.0" Level="Experienced"/>
+					<UsedSkill Name="CCR" Level="Beginner" />
+				</Role>
+				<Role Name="Technischer Architekt" >
+					<UsedSkill Name="WCF" />
+					<UsedSkill Name="Microsoft SQL-Server" />
+				</Role>
+				<Customer Name="ITSG GmbH">
+					<Description><![CDATA[Die Informationstechnische Servicestelle der Gesetzlichen Krankenversicherung (ITSG GmbH) wurde im Oktober 1996 gegründet. Seit 2010 hat sie ihren Sitz in Heusenstamm bei Frankfurt am Main. Die ITSG entwickelt und optimiert Datenaustauschverfahren im Auftrag aller Spitzenverbände der Krankenkassen. Als Informationstechnische Servicestelle der Gesetzlichen Krankenversicherung (GKV) unterstützen wir die Standardisierung und Normierung des Datenaustauschs in der GKV sowie die Datenverarbeitung im Auftrag der Krankenkassen und ihrer Verbände nach § 207 ff  SGB V.]]></Description>
+				</Customer>
+			</Project>
+
+			<Project Name="Antiphishing Tastatur">
+				<Role Name="Software Development Engineer">
+					<UsedSkill Name="C++" />
+					<UsedSkill Name="OOD&amp;A" />
+					<UsedSkill Name="ATL" />
+					<UsedSkill Name="Internet Explorer Plugin Entwicklung" />
+					<UsedSkill Name="PKI" />
+					<UsedSkill Name="Kryptographie" />
+					<UsedSkill Name="Linux" />
+				</Role>
+				<Role Name="Technischer Architekt"> 
+					<UsedSkill Name="PKI" />
+					<UsedSkill Name="Server/Client" />
+				</Role>
+				
+				<InternalProject />
+			</Project>
+			<Project Name="DASBV - Erstentwicklung">
+				<Role Name="Software Development Engineer" >
+					<UsedSkill Name="C++" />
+					<UsedSkill Name="OOD&amp;A" />
+					<UsedSkill Name="Linux" />
+				</Role>
+				<Customer Name="DASBV" />
+			</Project>
+			<Project Name="Elektronische Gesundheitskarte Online Rollout"
+				start="2013-01-28" end="2013-08-31">
+				<Role Name="Testdesigner">
+					<UsedSkill Name="Testdesign Methoden" Level="Experienced"
+						Skilltype="Hardskill" />
+					<UsedSkill Name="DNS" Level="Experienced"/>
+					<UsedSkill Name="IP V4" />
+					<UsedSkill Name="Kryptographie" Level="Expert"/>
+					<UsedSkill Name="Asymmetrische Verschlüsselung" Level="Expert"/>
+					<UsedSkill Name="Digitale Signaturen" Level="Expert"/>
+				</Role>
+				<Customer Name="gematik" />
+			</Project>
+		</Experience>
+	</Experiences>
+	<Education>
+		<Education Name="TU-Darmstadt" Graduated="true" Degree="Dipl.-Inform."
+			End="2008-03-31" Start="2001-09-01" FinalGrade="1.6 (Good)">
+			<FieldOfStudy>
+				<Name>Informatik</Name>
+				<Specialization>Verteilte Systeme</Specialization>
+			</FieldOfStudy>
+			<FieldOfStudy>
+				<Name>Nebenfach: Psychologie</Name>
+				<Specialization>Arbeits und Organisations Psychologie</Specialization>
+			</FieldOfStudy>
+		</Education>
+	</Education>
+	<Qualifications>
+		<Qualification Name="ISTQB Certified Tester Foundation Level (CTFL)" />
+		<Qualification
+			Name="ISTQB Certified Tester Advanced Level – Test Analyst (CTAL-ATA)" />
+		<Qualification Name="PRINCE2:2009 Foundation" />
+		<Qualification Name="ITIL-V3-Foundation" />
+	</Qualifications>
+	<Languages>
+		<Language Name="Deutsch" Level="First Language" />
+		<Language Name="Englisch" Level="Fluent" />
+		<Language Name="Polnisch" Level="Basic Knowledge" />
+	</Languages>
+
+</Profile>

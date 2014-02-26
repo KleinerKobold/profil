@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+	 
+	xmlns= "http://www.example.org/Profile"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.example.org/Profile"
+	elementFormDefault="qualified">
+
+    <xs:complexType name="ListOfExperiences">
+    	<xs:sequence minOccurs="0" maxOccurs="unbounded">
+    		<xs:element name="Experience" type="ExperienceType"></xs:element>
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ExperienceType">
+        <xs:annotation>
+        	<xs:documentation>Die Beschreibung einer Berufserfahrung mit Arbeitgeber, Projekten und eingesetzten Fähigkeiten.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+    		<xs:extension base="DescriptedNameType">
+    			<xs:sequence>
+    				<xs:element name="Employee" type="EmployeeType" minOccurs="0">
+    				</xs:element>
+                    <xs:element name="Project" type="Project" maxOccurs="unbounded" minOccurs="0">
+    							</xs:element>
+                </xs:sequence>
+    			<xs:attribute name="start" type="xs:date"
+    				use="optional" />
+    			<xs:attribute name="end" type="xs:date" use="optional" />
+    		</xs:extension>
+    	</xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Project">
+        <xs:annotation>
+        	<xs:documentation>Beschreibt ein Projekt</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+    		<xs:extension base="DescriptedNameType">
+    			<xs:sequence>
+    				<xs:element name="Role" type="RoleType" maxOccurs="unbounded" minOccurs="1"></xs:element>
+    				<xs:choice>
+    					<xs:element name="InternalProject"
+    						type="xs:boolean" default="true">
+    					</xs:element>
+    					<xs:element name="Customer"
+    						type="EmployeeType">
+    					</xs:element>
+    				</xs:choice>
+    			</xs:sequence>
+    			<xs:attribute name="start" type="xs:date"
+    				use="optional" />
+    			<xs:attribute name="end" type="xs:date" use="optional" />
+
+    		</xs:extension>
+    	</xs:complexContent>
+    </xs:complexType>
+
+     
+    <xs:complexType name="RoleType">
+        <xs:annotation>
+        	<xs:documentation>Beschreibt die Rolle die inne gehabt wurde</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+    		<xs:extension base="DescriptedNameType">
+    			<xs:sequence>
+                    <xs:element name="UsedSkill" type="Skill" minOccurs="0" maxOccurs="unbounded">
+    							</xs:element>
+                </xs:sequence>
+    		</xs:extension>
+    	</xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="Skill">
+        <xs:annotation>
+        	<xs:documentation>Eine Fähigkeit</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+    		<xs:extension base="DescriptedNameType">
+    			<xs:attribute name="Level" type="SkilllevelType"/>
+    				
+    			<xs:attribute name="Skilltype" default="Hardskill"><xs:simpleType>
+    					<xs:restriction base="xs:string">
+    						<xs:enumeration value="Softskill"></xs:enumeration>
+    						<xs:enumeration value="Hardskill"></xs:enumeration>
+    					</xs:restriction>				</xs:simpleType>
+    			</xs:attribute>
+    		</xs:extension>
+    	</xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="SkilllevelType">
+        <xs:annotation>
+        	<xs:documentation>Einstufung einer Fähigkeit</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+			<xs:enumeration value="Beginner"></xs:enumeration>
+			<xs:enumeration value="Trained"></xs:enumeration>
+			<xs:enumeration value="Experienced"></xs:enumeration>
+			<xs:enumeration value="Expert"></xs:enumeration>
+			<xs:enumeration value="Specialist"></xs:enumeration>
+ 		</xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="LanguagelevelType">
+        <xs:annotation>
+        	<xs:documentation>Einstufung der Sprachfähigkeiten</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+			<xs:enumeration value="Basic Knowledge"/>
+			<xs:enumeration value="Good Knowledge"/>
+			<xs:enumeration value="Fluent" />
+			<xs:enumeration value="First Language"/>
+ 		</xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="DescriptedNameType">
+        <xs:annotation>
+        	<xs:documentation>Hilfstyp</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+    		<xs:element name="Description" type="xs:string"
+    			maxOccurs="1" minOccurs="0">
+    		</xs:element>
+    	</xs:sequence>
+    	<xs:attribute name="Name" type="xs:string" use="required"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="EmployeeType">
+        <xs:annotation>
+        	<xs:documentation>Die Daten eines Arbeitgebers, dabei kann auch ein Kunde beschrieben werden</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+    		<xs:extension base="DescriptedNameType"></xs:extension>
+    	</xs:complexContent>
+    </xs:complexType>
+
+    <xs:element name="Profile" type="ProfileType" >
+    	<xs:annotation>
+    		<xs:documentation>Root Knoten</xs:documentation>
+    	</xs:annotation></xs:element>
+
+    <xs:complexType name="EducationType">
+        <xs:annotation>
+        	<xs:documentation>Beschreibt die schulische Ausbildung</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+    		<xs:extension base="DescriptedNameType">
+    			<xs:sequence>
+    				<xs:element name="FieldOfStudy" minOccurs="1"
+    					maxOccurs="unbounded">
+    					<xs:complexType>
+    						<xs:sequence>
+    							<xs:element name="Name"
+    								type="xs:string" minOccurs="1">
+    							</xs:element>
+    							<xs:element name="Specialization"
+    								type="xs:string" minOccurs="0" maxOccurs="unbounded">
+    							</xs:element>
+    						</xs:sequence>
+    					</xs:complexType>
+    				</xs:element>
+    			</xs:sequence>
+    			<xs:attribute name="Start" type="xs:date"
+    				use="optional" />
+    			<xs:attribute name="End" type="xs:date" use="optional" />
+    			<xs:attribute name="Graduated" type="xs:boolean"
+    				use="required" />
+    			<xs:attribute name="Degree" type="xs:string"
+    				use="required"/>
+    			
+    			<xs:attribute name="FinalGrade" type="xs:string" use="optional" />
+    		</xs:extension>
+    	</xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="ProfileType">
+        <xs:annotation>
+        	<xs:documentation>Beschreibt ein komplettes Profil</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+    		<xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+    		<xs:element name="Contact" type="ContactType" minOccurs="1"
+    			maxOccurs="1">
+    		</xs:element>
+    		<xs:element name="Experiences"
+    			type="ListOfExperiences" minOccurs="1" maxOccurs="1">
+    		</xs:element>
+    		<xs:element name="Education" minOccurs="1" maxOccurs="1">
+    			<xs:complexType>
+    				<xs:sequence>
+    					<xs:element name="Education"
+    						type="EducationType" minOccurs="1" maxOccurs="unbounded">
+    					</xs:element>
+    				</xs:sequence>
+    			</xs:complexType>
+    		</xs:element>
+    		<xs:element name="Qualifications" minOccurs="1" maxOccurs="1">
+    			<xs:complexType>
+    				<xs:sequence minOccurs="0" maxOccurs="unbounded">
+    					<xs:element name="Qualification"
+    						type="QualificationType">
+    					</xs:element>
+    				</xs:sequence>
+    			</xs:complexType>
+    		</xs:element>
+    		<xs:element name="Languages" minOccurs="1">
+	    		<xs:complexType>
+		    			<xs:sequence>
+		    				<xs:element name="Language" type="LanguageType" minOccurs="1" maxOccurs="unbounded" />
+		    				
+		    			</xs:sequence>
+	    		</xs:complexType>
+    		</xs:element>
+    		
+    	</xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="QualificationType">
+        <xs:annotation>
+        	<xs:documentation>Beschreibt eine Qualifikation wie ein Zertifikat oder ähnliches</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+    		<xs:extension base="DescriptedNameType">
+    			<xs:attribute name="Date" type="xs:date"
+    				use="optional">
+    			</xs:attribute>
+
+    		</xs:extension>
+    	</xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="LanguageType">
+        <xs:annotation>
+        	<xs:documentation>Die gesprochenen Sprachen, hier wurde keine unterscheidung nach lesen/schreiben und sprechen gemacht.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="Name" type="xs:string"></xs:attribute>
+        <xs:attribute name="Level" type="LanguagelevelType"/>
+    </xs:complexType>
+
+    <xs:complexType name="ContactType">
+    	<xs:choice minOccurs="0" maxOccurs="unbounded">
+    		<xs:element name="EMail" type="xs:string"></xs:element>
+    		<xs:element name="Fone" type="xs:string"></xs:element>
+    		<xs:element name="Address">
+    			<xs:complexType>
+    				<xs:sequence>
+    					<xs:element name="Street" type="xs:string">
+    					</xs:element>
+    					<xs:element name="City" type="xs:string">
+    					</xs:element>
+    					<xs:element name="Zip"
+    						type="xs:string">
+    					</xs:element>
+    				</xs:sequence>
+    			</xs:complexType>
+    		</xs:element>
+    	</xs:choice>
+    </xs:complexType>
+</xs:schema>
