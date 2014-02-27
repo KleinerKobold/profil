@@ -3,10 +3,9 @@
 	xmlns:pr="http://www.example.org/Profile">
 	<xsl:output method="xml" indent="yes" />
 
-	<!-- Possible Fonts: 	Helvetica Helvetica, sans-serif, SansSerif 
-							Times Times, Times Roman, Times-Roman, serif, any 
-							Courier Courier, monospace, Monospaced 
-							Symbol Symbol ZapfDingbats ZapfDingbats -->
+	<!-- Possible Fonts: Helvetica Helvetica, sans-serif, SansSerif Times Times, 
+		Times Roman, Times-Roman, serif, any Courier Courier, monospace, Monospaced 
+		Symbol Symbol ZapfDingbats ZapfDingbats -->
 
 
 	<xsl:variable name="SpaceAfterSection" select="'25pt'" />
@@ -15,7 +14,7 @@
 	<xsl:variable name="SpaceAfterSmall" select="'8pt'" />
 	<xsl:variable name="DefaultFontSize" select="'8pt'" />
 	<xsl:variable name="DefaultFontFamily" select="'Helvetica'" />
-	
+
 	<xsl:variable name="Section_Color" select="'blue'" />
 	<xsl:variable name="Section_FontSize" select="'12pt'" />
 
@@ -46,20 +45,20 @@
 
 			</fo:layout-master-set>
 
-
+			<!-- Fusszeile -->
 			<fo:page-sequence master-reference="A4-portrait">
 				<fo:static-content flow-name="after">
 					<fo:block text-align="center" font-size="8pt">
 						E-Mail:
 						<xsl:value-of select="pr:Profile/pr:Contact/pr:EMail" />
 						<xsl:if test="pr:Profile/pr:Contact/pr:Fone">
-						| Telefon:
-						<xsl:value-of select="pr:Profile/pr:Contact/pr:Fone" />
+							| Telefon:
+							<xsl:value-of select="pr:Profile/pr:Contact/pr:Fone" />
 						</xsl:if>
 					</fo:block>
 				</fo:static-content>
-				
-				
+
+
 				<fo:flow flow-name="xsl-region-body" font-size="{$DefaultFontSize}"
 					font-family="{$DefaultFontFamily}">
 					<fo:block font-size="18pt" color="{$Section_Color}">
@@ -67,31 +66,149 @@
 						<xsl:value-of select="pr:Profile/pr:Name" />
 					</fo:block>
 					<xsl:if test="pr:Profile/pr:Contact/pr:Address">
-					<fo:block><xsl:value-of select="pr:Profile/pr:Contact/pr:Address/pr:Street" /></fo:block>
-					<fo:block><xsl:value-of select="pr:Profile/pr:Contact/pr:Address/pr:Zip" /><xsl:value-of select="pr:Profile/pr:Contact/pr:Address/pr:City" /></fo:block>
+						<fo:block>
+							<xsl:value-of select="pr:Profile/pr:Contact/pr:Address/pr:Street" />
+						</fo:block>
+						<fo:block>
+							<xsl:value-of select="pr:Profile/pr:Contact/pr:Address/pr:Zip" />
+							<xsl:value-of select="pr:Profile/pr:Contact/pr:Address/pr:City" />
+						</fo:block>
 					</xsl:if>
-					<xsl:if test="pr:Profile/pr:Contact/pr:EMail"><fo:block>
-						E-Mail:
-						<xsl:value-of select="pr:Profile/pr:Contact/pr:EMail" />
-					</fo:block>
-					</xsl:if> 
+					<xsl:if test="pr:Profile/pr:Contact/pr:EMail">
+						<fo:block>
+							E-Mail:
+							<xsl:value-of select="pr:Profile/pr:Contact/pr:EMail" />
+						</fo:block>
+					</xsl:if>
 					<xsl:if test="pr:Profile/pr:Contact/pr:Fone">
-					<fo:block >
-						Telefon:
-						<xsl:value-of select="pr:Profile/pr:Contact/pr:Fone" />
-					</fo:block>
+						<fo:block>
+							Telefon:
+							<xsl:value-of select="pr:Profile/pr:Contact/pr:Fone" />
+						</fo:block>
 					</xsl:if>
 					<xsl:apply-templates />
+
+					<xsl:call-template name="Skills" />
 				</fo:flow>
 
 			</fo:page-sequence>
 		</fo:root>
 	</xsl:template>
 
+	<!-- Spezielle Dinge -->
+	<xsl:template name="Skills">
+		<fo:block page-break-before="always">
+			<fo:block color="{$Section_Color}" text-decoration="underline"
+				font-weight="bold" font-size="{$Section_FontSize}" space-before="{$SpaceAfterSection}">Fähigkeiten:
+			</fo:block>
+			<xsl:for-each-group
+				select="//pr:UsedSkill[@Skilltype='Hardskill' or not(@Skilltype)]"
+				group-by="@Name">
+				<xsl:sort select="@Name" />
+				<fo:block>
+					<xsl:value-of select="./@Name" /> <xsl:value-of select="./@Level" />
+				</fo:block>
+			</xsl:for-each-group>
+
+			<xsl:for-each-group select="//pr:UsedSkill[@Skilltype='Softskill']"
+				group-by="@Name">
+				<xsl:sort select="@Name" />
+						<fo:block>
+							<xsl:value-of select="./@Name" /> <xsl:value-of select="./@Level" />
+						</fo:block>
+			</xsl:for-each-group>
+			
+			<fo:table-and-caption>
+				<fo:table>
+					<fo:table-column />
+					<fo:table-column />
+
+					<fo:table-header>
+						<fo:table-row>
+							<fo:table-cell>
+								<fo:block font-weight="bold">Fähigkeit</fo:block>
+							</fo:table-cell>
+							<fo:table-cell>
+								<fo:block font-weight="bold">Erfahrung</fo:block>
+							</fo:table-cell>
+						</fo:table-row>
+					</fo:table-header>
+					<fo:table-body>
+					<fo:table-row>
+						<fo:table-cell><fo:block>Test 1</fo:block></fo:table-cell>
+						<fo:table-cell><fo:block>Test 2</fo:block></fo:table-cell>
+					</fo:table-row>
+					</fo:table-body>
+					</fo:table>
+					</fo:table-and-caption>
+			
+			
+			<fo:table-and-caption>
+				<fo:table>
+					<fo:table-column column-width="25mm" />
+					<fo:table-column column-width="25mm" />
+
+					<fo:table-header>
+						<fo:table-row>
+							<fo:table-cell>
+								<fo:block font-weight="bold">Fähigkeit</fo:block>
+							</fo:table-cell>
+							<fo:table-cell>
+								<fo:block font-weight="bold">Erfahrung</fo:block>
+							</fo:table-cell>
+						</fo:table-row>
+					</fo:table-header>
+
+					<fo:table-body>
+
+						<xsl:for-each-group
+							select="//pr:UsedSkill[@Skilltype='Hardskill' or not(@Skilltype)]"
+							group-by="@Name">
+							<xsl:sort select="@Name" />
+							<fo:table-row>
+								<fo:table-cell>
+									<fo:block>
+										<xsl:value-of select="./@Name" />
+									</fo:block>
+								</fo:table-cell>
+								<fo:table-cell>
+									<fo:block>
+										<xsl:value-of select="./@Level" />
+									</fo:block>
+								</fo:table-cell>
+
+							</fo:table-row>
+						</xsl:for-each-group>
+
+						<xsl:for-each-group select="//pr:UsedSkill[@Skilltype='Softskill']"
+							group-by="@Name">
+							<xsl:sort select="@Name" />
+							<fo:table-row>
+								<fo:table-cell>
+									<fo:block>
+										<xsl:value-of select="./@Name" />
+									</fo:block>
+								</fo:table-cell>
+								<fo:table-cell>
+									<fo:block>
+										<xsl:value-of select="./@Level" />
+									</fo:block>
+								</fo:table-cell>
+							</fo:table-row>
+						</xsl:for-each-group>
+					</fo:table-body>
+
+				</fo:table>
+			</fo:table-and-caption>
+		</fo:block>
+	</xsl:template>
+
 	<!-- Übersicht -->
 	<xsl:template match="/pr:Profile/pr:Experiences">
 		<fo:block color="{$Section_Color}" text-decoration="underline"
-			font-weight="bold" font-size="{$Section_FontSize}" space-before="{$SpaceAfterSection}">Berufliche Erfahrungen:</fo:block>
+			font-weight="bold" font-size="{$Section_FontSize}" space-before="{$SpaceAfterSection}">Berufliche
+			Erfahrungen:
+		</fo:block>
 
 		<xsl:for-each select="pr:Experience">
 
@@ -169,91 +286,106 @@
 			</fo:block>
 			<fo:block>
 				<fo:block text-indent="20pt">
-				<fo:block>
-					von
-					<xsl:value-of select="./@Start" />
-					bis
-					<xsl:value-of select="./@End" />
-					<xsl:choose>
-						<xsl:when test="./@Graduated">
-							mit Abschluss als
-							<xsl:value-of select="./@Degree"></xsl:value-of>
-						</xsl:when>
-						<xsl:otherwise>
-							ohne Abschluss
-						</xsl:otherwise>
-					</xsl:choose>
+					<fo:block>
+						von
+						<xsl:value-of select="./@Start" />
+						bis
+						<xsl:value-of select="./@End" />
+						<xsl:choose>
+							<xsl:when test="./@Graduated">
+								mit Abschluss als
+								<xsl:value-of select="./@Degree"></xsl:value-of>
+							</xsl:when>
+							<xsl:otherwise>
+								ohne Abschluss
+							</xsl:otherwise>
+						</xsl:choose>
+					</fo:block>
+
+					<fo:block>
+						Fächer:
+					</fo:block>
+					<fo:list-block text-indent="40pt">
+						<xsl:for-each select="./pr:FieldOfStudy">
+							<fo:list-item>
+								<fo:list-item-label>
+									<fo:block></fo:block>
+								</fo:list-item-label>
+								<fo:list-item-body>
+									<fo:block>
+										<xsl:value-of select="./pr:Name" />
+										<xsl:if test="./pr:Specialization">
+											-
+											<xsl:value-of select="./pr:Specialization" />
+										</xsl:if>
+									</fo:block>
+								</fo:list-item-body>
+							</fo:list-item>
+						</xsl:for-each>
+					</fo:list-block>
 				</fo:block>
-				
-				<fo:block>
-					Fächer:
-				</fo:block>
-				<fo:list-block text-indent="40pt">
-					<xsl:for-each select="./pr:FieldOfStudy">
-						<fo:list-item>
-							<fo:list-item-label>
-								<fo:block></fo:block>
-							</fo:list-item-label>
-							<fo:list-item-body>
-								<fo:block>
-									<xsl:value-of select="./pr:Name" />
-									<xsl:if test="./pr:Specialization">
-										- <xsl:value-of select="./pr:Specialization" />
-									</xsl:if>
-								</fo:block>
-							</fo:list-item-body>
-						</fo:list-item>
-					</xsl:for-each>
-				</fo:list-block>
-			</fo:block>
 			</fo:block>
 		</xsl:for-each>
 
 	</xsl:template>
-	
-	
+
+
 	<xsl:template match="/pr:Profile/pr:Qualifications">
 		<fo:block color="{$Section_Color}" text-decoration="underline"
-			font-weight="bold" font-size="{$Section_FontSize}" space-before="{$SpaceAfterParagraph}" space-after="{$SpaceAfterHeadline}">Qualifikationen:
+			font-weight="bold" font-size="{$Section_FontSize}" space-before="{$SpaceAfterParagraph}"
+			space-after="{$SpaceAfterHeadline}">Qualifikationen:
 		</fo:block>
 		<fo:list-block text-indent="40pt">
-		<xsl:for-each select="pr:Qualification">
-		<fo:list-item>
-			<fo:list-item-label>
-				<fo:block></fo:block>
-			</fo:list-item-label>
-			<fo:list-item-body>
-				<fo:block>
-					<xsl:value-of select="./@Name" />
-				</fo:block>
-			</fo:list-item-body>
-			</fo:list-item>
-		</xsl:for-each>
+			<xsl:for-each select="pr:Qualification">
+				<fo:list-item>
+					<fo:list-item-label>
+						<fo:block></fo:block>
+					</fo:list-item-label>
+					<fo:list-item-body>
+						<fo:block>
+							<xsl:value-of select="./@Name" />
+						</fo:block>
+					</fo:list-item-body>
+				</fo:list-item>
+			</xsl:for-each>
 		</fo:list-block>
 	</xsl:template>
 
 	<xsl:template match="/pr:Profile/pr:Languages">
 		<fo:block color="{$Section_Color}" text-decoration="underline"
-			font-weight="bold" font-size="{$Section_FontSize}" space-before="{$SpaceAfterParagraph}" space-after="{$SpaceAfterHeadline}">Sprachen:
+			font-weight="bold" font-size="{$Section_FontSize}" space-before="{$SpaceAfterParagraph}"
+			space-after="{$SpaceAfterHeadline}">Sprachen:
 		</fo:block>
 		<fo:list-block text-indent="40pt">
-		<xsl:for-each select="pr:Language">
-		<fo:list-item>
-			<fo:list-item-label>
-				<fo:block></fo:block>
-			</fo:list-item-label>
-			<fo:list-item-body>
-				<fo:block>
-					<xsl:value-of select="./@Name" /> <xsl:if test="./@Level"> - <xsl:choose>
-					<xsl:when test="./@Level='First Language'">Muttersprache</xsl:when>
-					<xsl:when test="./@Level='Fluent'">Verhandlungssicher</xsl:when>
-					<xsl:when test="./@Level='Good Knowledge'">Gute Kenntnisse</xsl:when>
-					<xsl:when test="./@Level='Basic Knowledge'">Grundlagen</xsl:when>
-					</xsl:choose> </xsl:if>
-				</fo:block>
-			</fo:list-item-body>
-			</fo:list-item>
-		</xsl:for-each>
+			<xsl:for-each select="pr:Language">
+				<fo:list-item>
+					<fo:list-item-label>
+						<fo:block></fo:block>
+					</fo:list-item-label>
+					<fo:list-item-body>
+						<fo:block>
+							<xsl:value-of select="./@Name" />
+							<xsl:if test="./@Level">
+								-
+								<xsl:choose>
+									<xsl:when test="./@Level='First Language'">
+										Muttersprache
+									</xsl:when>
+									<xsl:when test="./@Level='Fluent'">
+										Verhandlungssicher
+									</xsl:when>
+									<xsl:when test="./@Level='Good Knowledge'">
+										Gute Kenntnisse
+									</xsl:when>
+									<xsl:when test="./@Level='Basic Knowledge'">
+										Grundlagen
+									</xsl:when>
+								</xsl:choose>
+							</xsl:if>
+						</fo:block>
+					</fo:list-item-body>
+				</fo:list-item>
+			</xsl:for-each>
 		</fo:list-block>
 	</xsl:template>
 
