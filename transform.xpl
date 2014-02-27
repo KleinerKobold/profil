@@ -14,7 +14,7 @@
         <p:input port="source">
        </p:input>
         <p:input port="stylesheet">
-            <p:document href="profile2pdf.xsl"/>
+            <p:document href="Profile2PDF.xsl"/>
         </p:input>
         <p:input port="parameters"><p:empty/></p:input>
     </p:xslt>
