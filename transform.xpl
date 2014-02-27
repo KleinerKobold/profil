@@ -18,6 +18,8 @@
         </p:input>
         <p:input port="parameters"><p:empty/></p:input>
     </p:xslt>
+    
+    <p:store href="intermediate.xml" />
 
     <p:xsl-formatter name="xep" href="profile.pdf" content-type="application/pdf">
         <p:input port="source">
