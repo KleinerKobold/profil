@@ -19,11 +19,14 @@
         <xs:complexContent>
     		<xs:extension base="DescriptedNameType">
     			<xs:sequence>
-    				<xs:element name="Employee" type="EmployeeType" minOccurs="0">
+    				<xs:element name="Employee" type="EmployeeType"
+    					minOccurs="0">
     				</xs:element>
-                    <xs:element name="Project" type="Project" maxOccurs="unbounded" minOccurs="0">
-    							</xs:element>
-                </xs:sequence>
+    				<xs:element name="UsedSkill" type="Skill" minOccurs="0" maxOccurs="unbounded"></xs:element>
+    				<xs:element name="Project" type="Project"
+    					maxOccurs="unbounded" minOccurs="0">
+    				</xs:element>
+    			</xs:sequence>
     			<xs:attribute name="start" type="xs:date"
     				use="optional" />
     			<xs:attribute name="end" type="xs:date" use="optional" />
